@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Lazy's Memes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+        nav a:hover {
+            background: #3498db;
+        }
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 350px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+        }
+        .project-card .bg-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.85;
+            z-index: 0;
+        }
+        .project-card-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 1rem 1rem 1rem;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.2) 100%);
+            border-radius: 0 0 12px 12px;
+        }
+        .project-card h2 a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        .project-card h2 a:hover {
+            color: #ffd700;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #222;
+            color: #bbb;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav {
+                margin-top: 1rem;
+            }
+            .projects {
+                gap: 1rem;
+            }
+            .project-card-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mr Lazy's Memes</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="projects" id="projects">
+            <div class="project-card">
+                <div class="bg-img" style="background-image: url('https://i.imgflip.com/779v7p.jpg');"></div>
+                <div class="project-card-content">
+                    <h2><a href="projecttrollmemes.html">Troll Memes</a></h2>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="bg-img" style="background-image: url('https://images.squarespace-cdn.com/content/v1/613ff93b8fa1470440856567/1654873797630-ZP1OZKYK5G4JZMFPA3FQ/thinking+meme.jpeg');"></div>
+                <div class="project-card-content">
+                    <h2><a href="projectfunnymeme.html">Funny Memes</a></h2>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="bg-img" style="background-image: url('https://i.ytimg.com/vi/VZpLb5pETbs/maxresdefault.jpg');"></div>
+                <div class="project-card-content">
+                    <h2><a href="projectwholememes.html">Wholesome Memes</a></h2>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Mr Lazy's Memes. All rights reserved.
+    </footer>
+</body>
+</html>

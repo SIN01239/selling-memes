@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+            background-image: url(https://th.bing.com/th/id/OIP.KyDBxtowG5ixobRpiDIMpAHaEK?r=0&rs=1&pid=ImgDetMain);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        #orderSection {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chooseButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #chooseButton:hover {
+            background-color: #45a049;
+        }
+        #foodItems {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
+            justify-content: center;
+            gap: 20px;
+        }
+        .food-item {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            width: 150px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .food-item:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        .food-item.selected {
+            background-color: #e74c3c;
+            border: 2px solid #c0392b;
+        }
+        .order-form {
+            margin-top: 20px;
+            display: none; /* Hidden until an item is selected */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+    <div id="orderSection">
+        <h1>Place Your Order</h1>
+        <h2>You Selected: Wholesome Memes <span id="memeType"></span></h2>
+        <button id="chooseButton" onclick="showFoodItems()">Choose Your Item</button>
+        <div id="foodItems">
+            <div class="food-item" onclick="selectItem(this, 'Item 1')" style="padding:0; background:none;">
+                <img src="https://th.bing.com/th/id/R.96014534d317add019d5a30ca4e6748f?rik=qD5RhxMccCctFQ&pid=ImgRaw&r=0" alt="Item 1" style="width:100%;height:100%;object-fit:cover;border-radius:5px;display:block;">
+            </div>
+            <div class="food-item" onclick="selectItem(this, 'Item 2')" style="padding:0; background:none;">
+                <img src="https://th.bing.com/th/id/R.8c5fb9be9b5395ad91e326cb5fd8306b?rik=zJgSIQu4NDE65g&riu=http%3a%2f%2fimages3.memedroid.com%2fimages%2fUPLOADED893%2f5db7d66068373.jpeg&ehk=0bveu0437YY84vNeD2gbkKgQSOu%2fZfRlI7PiD%2bgqAgM%3d&risl=&pid=ImgRaw&r=0" alt="Item 2" style="width:100%;height:100%;object-fit:cover;border-radius:5px;display:block;">
+            </div>
+            <div class="food-item" onclick="selectItem(this, 'Item 3')" style="padding:0; background:none;">
+                <img src="https://media.indiedb.com/cache/images/members/1/543/542605/thumb_620x2000/CH1.png" alt="Item 3" style="width:100%;height:100%;object-fit:cover;border-radius:5px;display:block;">
+            </div>
+        </div>
+        <form id="orderForm" class="order-form">
+            <label for="name">Your Gmail:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            <label for="delivery">Download Option:</label>
+            <select id="delivery" name="delivery" required>
+                <option value="pickup">Google</option>
+                <option value="delivery">Chrome</option>
+            </select>
+            <button type="submit">download img</button>
+        </form>
+    <script>
+        // Display the selected food type from the first page
+        document.getElementById('memeType').textContent = localStorage.getItem('selectedFood') || 'Unknown';
+
+        // Show food items when "Choose Your Item" is clicked
+        function showFoodItems() {
+            document.getElementById('foodItems').style.display = 'flex';
+            document.getElementById('chooseButton').style.display = 'none'; // Hide the button after click
+        }
+
+        // Handle item selection
+        let selectedItem = null;
+        function selectItem(element, itemName) {
+            // Remove selection from all items
+            document.querySelectorAll('.food-item').forEach(item => item.classList.remove('selected'));
+            // Add selection to the clicked item
+            element.classList.add('selected');
+            selectedItem = itemName;
+            // Show the order form
+            document.getElementById('orderForm').style.display = 'block';
+        }
+
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (!selectedItem) {
+                alert('Please select a food item first!');
+                return;
+            }
+            const foodType = localStorage.getItem('selectedFood');
+            const quantity = document.getElementById('quantity').value;
+            const name = document.getElementById('name').value;
+            const delivery = document.getElementById('delivery').value;
+
+            // Log the order (for demo purposes)
+            const orderDetails = `Order: ${quantity} x ${foodType} (${selectedItem})\nName: ${name}\nDelivery: ${delivery}`;
+            console.log(orderDetails);
+            alert(`Thank you, ${name}! Your order for ${quantity} ${foodType} (${selectedItem}) with ${delivery} has been received.`);
+
+            // Optional: Clear form and selection
+            this.reset();
+            document.getElementById('foodItems').style.display = 'none';
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('chooseButton').style.display = 'block';
+            selectedItem = null;
+            localStorage.removeItem('selectedFood');
+        });
+    </script>
+</body>
+</html>
