@@ -1,2 +1,1 @@
-# selling-memes
-selling produce
+Remove README.md
